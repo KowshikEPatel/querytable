@@ -1,13 +1,19 @@
-
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import './App.css'
+ 
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import './App.css';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import  HomePage  from './Components/Home.page'
-import  RQSuperHeroesPage  from './Components/RQsuperheroes.page'
-import  SuperHeroesPage  from './Components/Superheroes.page'
+import  RQSuperHeroesPage  from './Components/RQsuperheroes.page';
+import  SuperHeroesPage  from './Components/Superheroes.page';
+import { QueryClientProvider,QueryClient } from 'react-query';
+
+const queryClient = new QueryClient() 
 
 function App() {
+
   return (
     <Router>
+      <QueryClientProvider client={queryClient}>
       <div>
         <nav>
           <ul>
@@ -28,6 +34,8 @@ function App() {
           <Route path='/' element={<HomePage />}/>
         </Routes>
       </div>
+      <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'}/>
+      </QueryClientProvider>
     </Router>
   )
 }
