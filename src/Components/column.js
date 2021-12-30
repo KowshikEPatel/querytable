@@ -1,3 +1,4 @@
+import {  } from '../Hooks/usePeoplesData';
 
 export const COLUMN = [
     {
@@ -22,9 +23,8 @@ export const COLUMN = [
         Cell:({row})=>{
             const data = row.original;
             const showCellData = (id)=>{
-               alert(id);
+               //write the useDeletePersonDetail here but that give a error hooks cannot be called under functions 
             }
-
             return <button style={{border:"2px solid black",borderRadius:"16px"}} onClick={()=>{showCellData(data.id)}}>x</button>
         }
     }
