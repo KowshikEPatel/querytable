@@ -2,9 +2,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import  HomePage  from './Components/Home.page'
 import  RQSuperHeroesPage  from './Components/RQsuperheroes.page';
-import  SuperHeroesPage  from './Components/Superheroes.page';
 import { QueryClientProvider,QueryClient } from 'react-query';
 
 const queryClient = new QueryClient() 
@@ -32,10 +30,9 @@ function App() {
           </ul>
         </nav>
         <Routes>
-          <Route path='/super-heroes' element={<SuperHeroesPage />}/>
           <Route path='/rq-super-heroes' element={<RQSuperHeroesPage />}/>
           <Route path='/rqt-super-heroes' element={<RQSuperHeroesPage />}/>
-          <Route path='/' element={<HomePage />}/>
+          <Route path='/' element={<RQSuperHeroesPage />}/>
         </Routes>
       </div>
       <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'}/>

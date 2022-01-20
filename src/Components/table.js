@@ -1,9 +1,18 @@
 import { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { COLUMN } from './column';
-
+import styled from '@emotion/styled';
 
 export const TableComponent = (props) =>{
+
+    const StyledTable = styled.div`
+    table{
+        border: 2px solid black;
+    }
+    th,td{
+        padding: 0.5rem;
+    }
+    `
     
     const columns = useMemo(()=>COLUMN, []);
     const {
@@ -15,6 +24,7 @@ export const TableComponent = (props) =>{
     } = useTable({columns,data:props.data.data})
 
     return <>
+            <StyledTable>
             <table {...getTableProps()}>
                 <thead>
                     {
@@ -48,6 +58,6 @@ export const TableComponent = (props) =>{
                    
                 </tbody>
             </table>
-           
+           </StyledTable>
         </>
 }
