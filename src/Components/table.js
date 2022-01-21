@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
+import axios from 'axios';
 import { useTable } from 'react-table';
-import { COLUMN } from './column';
+import {  useMutation,useQueryClient } from 'react-query';
 import styled from '@emotion/styled';
+import { useMemo } from 'react';
 
 export const TableComponent = (props) =>{
 
@@ -13,8 +14,46 @@ export const TableComponent = (props) =>{
         padding: 0.5rem;
     }
     `
+    const apiEndPoint = 'https://6073d32c066e7e0017e7858a.mockapi.io/myprojects/users';
+
+    const queryClient = useQueryClient();
+    const mutation = useMutation(newPerson => {
+
+        return axios.delete(apiEndPoint+'/'+newPerson)
+    },{
+        onSuccess: () => {
+            queryClient.invalidateQueries('people');
+        }
+    })
+
+    const columns = useMemo(()=>[
+        {
+            Header:'Id',
+            accessor:'id'
+        },
+        {
+            Header:'Name',
+            accessor:'name'
+        },
+        {
+            Header:'Email Address',
+            accessor:'email'
+        },
+        {
+            Header:'Phone Number',
+            accessor:'phone'
     
-    const columns = useMemo(()=>COLUMN, []);
+        },
+        {
+            width:100,
+            Header:'Delete Entry',
+            Cell: ({row}) => {
+                return <button onClick={()=>{   
+                    mutation.mutate(row.original.id)
+                }}>Delete</button>}
+        }
+    ],[]);
+
     const {
         getTableProps,
         getTableBodyProps,

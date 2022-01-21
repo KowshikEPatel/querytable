@@ -18,6 +18,7 @@ export const usePeoplesData = ( ) => {
 export const useDeletePersonDetail = (id) => {
 
     const queryClient = useQueryClient();
+
     return useMutation(() => deletePerson(id),{
         onSuccess: () => {
             queryClient.invalidateQueries('people');
