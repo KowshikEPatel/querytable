@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import  RQSuperHeroesPage  from './Components/RQsuperheroes.page';
+import HDash from './Components/HDash';
 import { QueryClientProvider,QueryClient } from 'react-query';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const queryClient = new QueryClient() 
 
@@ -19,7 +21,7 @@ function App() {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to='/super-heroes'>Traditional Super Heroes</Link>
+              <Link to='/hdash1'>Hiring dashboard</Link>
             </li>
             <li>
               <Link to='/rq-super-heroes'>RQ Super Heroes</Link>
@@ -31,7 +33,7 @@ function App() {
         </nav>
         <Routes>
           <Route path='/rq-super-heroes' element={<RQSuperHeroesPage />}/>
-          <Route path='/rqt-super-heroes' element={<RQSuperHeroesPage />}/>
+          <Route path='/hdash1' element={<HDash />}/>
           <Route path='/' element={<RQSuperHeroesPage />}/>
         </Routes>
       </div>
