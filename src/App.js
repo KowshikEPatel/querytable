@@ -2,10 +2,10 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import  HomePage  from './Components/Home.page'
 import  RQSuperHeroesPage  from './Components/RQsuperheroes.page';
-import  SuperHeroesPage  from './Components/Superheroes.page';
+import HDash from './Components/HDash';
 import { QueryClientProvider,QueryClient } from 'react-query';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const queryClient = new QueryClient() 
 
@@ -21,17 +21,20 @@ function App() {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to='/super-heroes'>Traditional Super Heroes</Link>
+              <Link to='/hdash1'>Hiring dashboard</Link>
             </li>
             <li>
               <Link to='/rq-super-heroes'>RQ Super Heroes</Link>
             </li>
+            <li>
+              <Link to='/rqt-super-heroes'>RQT Super Heroes</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
-          <Route path='/super-heroes' element={<SuperHeroesPage />}/>
           <Route path='/rq-super-heroes' element={<RQSuperHeroesPage />}/>
-          <Route path='/' element={<HomePage />}/>
+          <Route path='/hdash1' element={<HDash />}/>
+          <Route path='/' element={<RQSuperHeroesPage />}/>
         </Routes>
       </div>
       <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'}/>

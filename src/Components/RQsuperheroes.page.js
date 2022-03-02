@@ -1,29 +1,30 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import axios from 'axios';
+import { usePeoplesData } from '../Hooks/usePeoplesData';
+import { TableComponent } from './table';
 
 export default function RQsuperheroes() {
     
-    const { data, isLoading, isError, error } = useQuery('superheroes',()=>{
-       return axios.get('https://6073d32c066e7e0017e7858a.mockapi.io/myprojects/users');
-    });
+    const {data,isLoading,isError,isSuccess,error} = usePeoplesData();
 
-    if(isLoading){
-        return <h1>Loading...</h1>
-    }
+//calling the hook here but I dont know how to bind the id with useDeletePersonDetail 
 
     if(isError){
         return <h2>{error}</h2>
     }
 
-    return (
-        <>
-            <h1>
-                RQsuperheroes Page
-            </h1>
-            {data?.data.map((hero,index) =>{
-                return <div key={hero.name}>{hero.name}</div>
-            })}
+    if(isLoading){
+        return <h1>Loading....</h1>
+    }
+
+    if( !isLoading && isSuccess){
+        return <>
+                    <h1>
+                        RQsuperheroes Page
+                    </h1>
+                    <TableComponent data={data}/>
         </>
-    )
+    }
+        
+        
 }
+
